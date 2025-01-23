@@ -1,4 +1,5 @@
 import { Field } from "@/components/common/field/field";
+import { Profile } from "@/components/common/profile/profile";
 import { Table } from "@/components/common/table/table";
 import { Button } from "@/components/ui/button/button";
 import { mockdata, TEstudiante } from "@/utils/mock-data";
@@ -10,11 +11,11 @@ export const ProfilePage = () => {
     return (
         <div>
             <div className="flex gap-12 px-4 py-8 border-b border-neutral-300 max-h-[224px]">
-                <div className="w-40 h-40 overflow-hidden rounded-full">
-                    <img src="" alt="" className="object-cover w-full h-full" />
-                </div>
+                <Profile imagen={data.imagen} nombre={data.nombre} apellido={data.apellido} />
                 <div className="flex flex-col gap-4">
-                    <h1 className="text-[2.5rem] font-bold">Nombre</h1>
+                    <h1 className="text-[2.5rem] font-bold">
+                        {data.nombre} {data.apellido}
+                    </h1>
                     <Link to="editar">
                         <Button>Editar estudiante</Button>
                     </Link>

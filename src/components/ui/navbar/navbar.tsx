@@ -8,6 +8,7 @@ export const Navbar = ({ links }: { links: TNavlink[] }) => {
                 <NavLink
                     to={target}
                     className={({ isActive }) => (isActive ? "text-white" : "text-neutral-400")}
+                    key={target}
                 >
                     {label}
                 </NavLink>

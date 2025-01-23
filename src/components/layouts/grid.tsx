@@ -7,7 +7,7 @@ export const Grid = () => {
     return (
         <div className="grid grid-cols-5 gap-4 pb-4">
             {data?.map((estudiante) => (
-                <Card estudiante={estudiante} />
+                <Card estudiante={estudiante} key={estudiante._id} />
             ))}
         </div>
     );

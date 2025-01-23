@@ -27,7 +27,7 @@ export const Table = ({ label, cursos }: { label: string; cursos: TCurso[] }) =>
                     <TCel value="Nota" />
                 </THead>
                 {cursos.map(({ curso, nota }) => (
-                    <TRow>
+                    <TRow key={curso}>
                         <TCel value={curso} />
                         <TCel value={nota} />
                     </TRow>
