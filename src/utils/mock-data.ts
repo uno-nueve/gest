@@ -1,4 +1,4 @@
-type TCurso = {
+export type TCurso = {
     curso: string;
     nota: number;
 };
@@ -12,6 +12,7 @@ export type TEstudiante = {
     telefono: string;
     año: string;
     division: string;
+    docente: string;
     observaciones: string;
     cursos: TCurso[];
 };
@@ -26,6 +27,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7334",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones:
             "Bart es un niño curioso e hiperactivo, por lo que suele meterse en problemas jugando bromas para llamar la atención de los demás. Es destacable su talento para la música. Particularmente su dominio de la batería.",
         cursos: [
@@ -44,6 +46,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7335",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones:
             "Milhouse es el mejor amigo de Bart, un niño inteligente pero socialmente torpe. Usa anteojos gruesos y es muy leal a Bart, a menudo siguiéndolo en sus travesuras.",
         cursos: [
@@ -62,6 +65,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7336",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones:
             "Martin es el estudiante más inteligente de la clase, un niño extremadamente académico y precoz. Destaca en todas las materias y es frecuentemente objeto de burlas por su inteligencia.",
         cursos: [
@@ -80,6 +84,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7337",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones:
             "Nelson es el matón de la escuela, conocido por sus burlas y golpes. A pesar de su comportamiento agresivo, ocasionalmente muestra un lado más vulnerable.",
         cursos: [
@@ -98,6 +103,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7338",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones:
             "Lisa es una niña extremadamente inteligente y comprometida con causas sociales. Sobresale en música y académicamente, siendo una estudiante modelo.",
         cursos: [
@@ -116,6 +122,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7339",
         año: "4°",
         division: "C",
+        docente: "",
         observaciones:
             "Ralph es un niño inocente y algo ingenuo, conocido por sus comentarios cómicos y su percepción única del mundo. Hijo del jefe de policía Wiggum.",
         cursos: [
@@ -134,6 +141,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7340",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones:
             "Compañero de clase ocasionalmente mencionado, con poca información específica.",
         cursos: [
@@ -152,6 +160,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7341",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones: "Otro compañero de clase con información limitada.",
         cursos: [
             { curso: "Matemática", nota: 4 },
@@ -169,6 +178,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7342",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones: "Estudiante femenina de la escuela de Bart, con poca información detallada.",
         cursos: [
             { curso: "Matemática", nota: 6 },
@@ -186,6 +196,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7343",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones: "Otro compañero de clase con información limitada.",
         cursos: [
             { curso: "Matemática", nota: 5 },
@@ -203,6 +214,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7344",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones: "Estudiante femenina de la escuela, con información limitada.",
         cursos: [
             { curso: "Matemática", nota: 6 },
@@ -220,6 +232,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7345",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones: "Estudiante de origen hispano en la escuela de Bart.",
         cursos: [
             { curso: "Matemática", nota: 7 },
@@ -237,6 +250,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7346",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones:
             "Hijo de Ned Flanders, conocido por su educación religiosa y comportamiento ejemplar.",
         cursos: [
@@ -255,6 +269,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7347",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones:
             "Hermano de Rod Flanders, también criado bajo los estrictos principios religiosos de su padre.",
         cursos: [
@@ -273,6 +288,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7348",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones: "Otro compañero de clase de Bart con información limitada.",
         cursos: [
             { curso: "Matemática", nota: 5 },
@@ -290,6 +306,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7349",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones:
             "Hija del reverendo Lovejoy, conocida por su apariencia de niña buena pero con un lado travieso.",
         cursos: [
@@ -308,6 +325,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7350",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones: "Compañera de clase de Bart, con poca información detallada.",
         cursos: [
             { curso: "Matemática", nota: 6 },
@@ -325,6 +343,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7351",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones: "Una de las gemelas Mackleberry, conocida por su personalidad.",
         cursos: [
             { curso: "Matemática", nota: 7 },
@@ -342,6 +361,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7352",
         año: "4°",
         division: "A",
+        docente: "",
         observaciones: "La otra gemela Mackleberry, similar a su hermana Sherri.",
         cursos: [
             { curso: "Matemática", nota: 7 },
@@ -359,6 +379,7 @@ export const mockdata: TEstudiante[] = [
         telefono: "636-555-7353",
         año: "4°",
         division: "B",
+        docente: "Edna Krabbaple",
         observaciones:
             "Estudiante de intercambio alemán en la escuela de Bart, conocido por su personalidad peculiar.",
         cursos: [
