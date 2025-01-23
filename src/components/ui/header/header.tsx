@@ -15,7 +15,7 @@ export const Header = () => {
 
     return (
         <header className="flex items-center justify-between h-20 px-10 bg-neutral-800">
-            <span className="text-4xl text-white">GEst.</span>
+            <span className="text-4xl font-bold text-white font-rokkitt">GEst.</span>
             <Navbar links={navlinks} />
             <Button>Cerrar sesión</Button>
         </header>
