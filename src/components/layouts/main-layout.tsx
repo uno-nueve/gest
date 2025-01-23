@@ -4,9 +4,9 @@ import { ReactNode } from "react";
 
 export const MainLayout = ({ children }: { children: ReactNode }) => {
     return (
-        <div className="max-w-screen-lg min-h-screen mx-auto my-0 overflow-hidden">
+        <div className="max-w-screen-lg min-h-screen mx-auto my-0">
             <Header />
-            <div className="min-h-[calc(100vh-160px)] h-full">{children}</div>
+            <div className="min-h-[calc(100vh-160px)] h-full p-4 overflow-hidden">{children}</div>
             <Footer />
         </div>
     );

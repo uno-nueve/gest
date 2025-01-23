@@ -9,6 +9,7 @@ import { CreatePage } from "@/routes/create-page";
 import { EditPage } from "@/routes/edit-page";
 import { LandingPage } from "./routes/landing-page";
 import { ErrorPage } from "./routes/error-page";
+import { Grid } from "./components/layouts/grid";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
                         path: "estudiantes",
                         element: <EstudiantesPage />,
                         children: [
+                            { element: <Grid />, index: true },
                             {
                                 path: ":id",
                                 element: <ProfilePage />,
