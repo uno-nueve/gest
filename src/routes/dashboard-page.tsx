@@ -1,9 +1,9 @@
 import { Outlet } from "react-router";
 
-export const Root = () => {
+export const DashboardPage = () => {
     return (
         <div>
-            ROOT
+            DASHBOARD PAGE
             <Outlet />
         </div>
     );
