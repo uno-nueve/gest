@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 import { HTMLAttributes, ReactNode } from "react";
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors rounded-lg",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors rounded-lg max-w-max",
     {
         variants: {
             variant: {
