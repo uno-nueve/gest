@@ -10,6 +10,7 @@ import { EditPage } from "@/routes/edit-page";
 import { LandingPage } from "./routes/landing-page";
 import { ErrorPage } from "./routes/error-page";
 import { Grid } from "./components/layouts/grid";
+import { InfoPage } from "./routes/info-page";
 
 const router = createBrowserRouter([
     {
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
                 path: "app",
                 element: <DashboardPage />,
                 children: [
-                    { element: <EstudiantesPage />, index: true },
+                    { element: <InfoPage />, index: true },
+                    { path: "Info", element: <InfoPage /> },
                     {
                         path: "estudiantes",
                         element: <EstudiantesPage />,
