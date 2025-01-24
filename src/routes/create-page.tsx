@@ -1,3 +1,3 @@
-export const CreatePage = () => {
-    return <div>NEW ESTUDIANTE PAGE</div>;
-};
+import { EstudianteForm } from "@/components/common/form/form";
+
+export const CreatePage = () => <EstudianteForm />;

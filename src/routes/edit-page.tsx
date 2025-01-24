@@ -1,3 +1,3 @@
-export const EditPage = () => {
-    return <div>EDIT ESTUDIANTE PAGE</div>;
-};
+import { EstudianteForm } from "@/components/common/form/form";
+
+export const EditPage = () => <EstudianteForm />;
