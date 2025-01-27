@@ -3,14 +3,14 @@ import { ReactNode } from "react";
 
 export const THead = ({ children }: { children: ReactNode }) => {
     return (
-        <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-black">
+        <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-black rounded-t-lg">
             {children}
         </div>
     );
 };
 
 export const TRow = ({ children }: { children: ReactNode }) => {
-    return <div className="flex items-center justify-between px-4">{children}</div>;
+    return <div className="flex items-center justify-between px-4 rounded-b-lg">{children}</div>;
 };
 
 export const TCel = ({ value }: { value: string | number }) => {
@@ -21,7 +21,7 @@ export const Table = ({ label, cursos }: { label: string; cursos: TCurso[] }) =>
     return (
         <div>
             <h3 className="pb-2 font-bold">{label}</h3>
-            <div className="flex flex-col gap-2 pb-2 overflow-hidden rounded-lg bg-neutral-100">
+            <div className="flex flex-col gap-2 pb-2 rounded-lg bg-neutral-100">
                 <THead>
                     <TCel value="Curso" />
                     <TCel value="Nota" />
