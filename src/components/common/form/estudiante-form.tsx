@@ -1,13 +1,14 @@
-import { Field, Form } from "@base-ui-components/react";
+import { Form } from "@base-ui-components/react";
 import { Button } from "@/components/ui/button/button";
-import { ImageIcon } from "@/components/ui/svg/image-icon";
-import { FileField } from "../field/file-field";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/input/textarea";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputTable } from "../table/input-table";
 import { Input } from "@/components/ui/input/input";
+import { FilePicker } from "@/components/ui/input/file-picker";
+import { setImage } from "@/state/file-picker/file-picker-slice";
+import { useAppDispatch } from "@/hooks/rtk";
 
 const schema = z.object({
     nombre: z.string().min(2, "Campo obligatorio"),
@@ -18,7 +19,7 @@ const schema = z.object({
     telefono: z.string().min(8, "Formato invalido"),
     año: z.string().length(4, "Formato invalido"),
     docente: z.string().min(2, "Campo obligatorio"),
-    // cursos: z.object({ curso: z.string(), nota: z.number() }).array(),
+    cursos: z.object({ curso: z.string(), nota: z.number() }).array(),
     observaciones: z.string().optional(),
     imagen: z.object({ data: z.string().base64() }).optional(),
 });
@@ -39,10 +40,25 @@ export const EstudianteForm = () => {
         console.log(data);
     };
 
+    const dispatch = useAppDispatch();
+
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex gap-12 px-4 py-8 border-b border-neutral-300 max-h-[224px]">
-                <FileField label={<ImageIcon className="w-16 h-16" />} />
+                <div className="flex items-center justify-between">
+                    <FilePicker id="imagen" />
+                    {errors.imagen && (
+                        <p className="text-xs text-red-600">{errors.imagen.message}</p>
+                    )}
+                    <Input
+                        {...register("imagen")}
+                        type="file"
+                        id="imagen"
+                        accept="image/png, image/jpeg"
+                        className="hidden"
+                        onChange={(e) => dispatch(setImage(e.currentTarget.files![0]))}
+                    />
+                </div>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
                         <div>
