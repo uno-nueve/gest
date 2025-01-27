@@ -1,19 +1,13 @@
-export const Textarea = ({
-    id,
-    name,
-    placeholder,
-}: {
-    id: string;
-    name: string;
-    placeholder: string;
-}) => {
+import { forwardRef, TextareaHTMLAttributes } from "react";
+
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ ...props }, ref) => {
     return (
         <textarea
             className="w-full px-4 py-2 bg-white rounded-lg resize-none"
-            id={id}
-            name={name}
-            rows={3}
-            placeholder={placeholder}
+            ref={ref}
+            {...props}
         />
     );
-};
+});
