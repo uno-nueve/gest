@@ -9,6 +9,9 @@ import { Input } from "@/components/ui/input/input";
 import { FilePicker } from "@/components/ui/input/file-picker";
 import { setImage } from "@/state/file-picker/file-picker-slice";
 import { useAppDispatch } from "@/hooks/rtk";
+import axios from "axios";
+import { TEstudiante } from "@/utils/mock-data";
+import { decodeBase64 } from "@/utils/decode-base64";
 
 const schema = z.object({
     nombre: z.string().min(2, "Campo obligatorio"),
@@ -21,26 +24,63 @@ const schema = z.object({
     docente: z.string().min(2, "Campo obligatorio"),
     cursos: z.object({ curso: z.string(), nota: z.number() }).array(),
     observaciones: z.string().optional(),
-    imagen: z.object({ data: z.string().base64() }).optional(),
+    imagen: z.union([z.instanceof(File), z.object({ data: z.string().base64() })]).optional(),
 });
 
-type FormFields = z.infer<typeof schema>;
+export type FormFields = z.infer<typeof schema>;
 
-export const EstudianteForm = () => {
+type EstudianteFormProps = {
+    estudiante?: TEstudiante;
+};
+
+export const EstudianteForm = ({ estudiante }: EstudianteFormProps) => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors, isSubmitting },
     } = useForm<FormFields>({
+        defaultValues: estudiante
+            ? {
+                  nombre: estudiante.nombre,
+                  apellido: estudiante.apellido,
+                  email: estudiante.email,
+                  direccion: estudiante.direccion,
+                  tutor: estudiante.tutor,
+                  telefono: estudiante.telefono,
+                  año: estudiante.año,
+                  docente: estudiante.docente,
+                  cursos: estudiante.cursos,
+                  observaciones: estudiante.observaciones,
+                  imagen: estudiante.imagen,
+              }
+            : undefined,
         resolver: zodResolver(schema),
     });
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        console.log(data);
+        if (estudiante) {
+            return await axios
+                .put(`http://localhost:3000/estudiantes${estudiante._id}`, data)
+                .then((res) => console.log(res));
+        } else {
+            await axios
+                .post("http://localhost:3000/estudiantes", data)
+                .then((res) => console.log(res));
+        }
     };
 
     const dispatch = useAppDispatch();
+    if (estudiante?.imagen?.data) {
+        const file = decodeBase64(
+            estudiante.imagen.data,
+            `${estudiante.nombre}${estudiante.apellido}.jpg`
+        );
+
+        dispatch(setImage(file));
+    } else {
+        dispatch(setImage(undefined));
+    }
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -156,7 +196,7 @@ export const EstudianteForm = () => {
                         </div>
                         <Input {...register("docente")} placeholder="Bart" />
                     </div>
-                    <InputTable label="cursos" />
+                    <InputTable setValue={setValue} label="cursos" />
                     <div className="flex flex-col gap-2">
                         <div>
                             <label htmlFor="observaciones" className="font-bold">

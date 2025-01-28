@@ -9,6 +9,13 @@ export const store = configureStore({
         temp: tempReducer,
         file: filePickerReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: ["file/setImage"],
+                ignoredPaths: ["file.imagen"],
+            },
+        }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

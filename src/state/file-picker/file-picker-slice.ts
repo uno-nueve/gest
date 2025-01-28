@@ -12,7 +12,7 @@ export const filePickerSlice = createSlice({
     name: "file",
     initialState,
     reducers: {
-        setImage: (state, action: PayloadAction<File>) => {
+        setImage: (state, action: PayloadAction<File | undefined>) => {
             return { ...state, imagen: action.payload };
         },
     },

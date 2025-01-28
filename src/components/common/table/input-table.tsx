@@ -6,8 +6,16 @@ import { TCel, THead, TRow } from "./table";
 import { Select, SelectItem } from "@/components/ui/input/select";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
 import { setCurso, setNota } from "@/state/temp/temp-slice";
+import { UseFormSetValue } from "react-hook-form";
+import { FormFields } from "../form/estudiante-form";
 
-export const InputTable = ({ label }: { label: string }) => {
+export const InputTable = ({
+    label,
+    setValue,
+}: {
+    label: string;
+    setValue: UseFormSetValue<FormFields>;
+}) => {
     const [cursos, setCursos] = useState<TCurso[]>([]);
     const dispatch = useAppDispatch();
     const temp = useAppSelector((state) => state.temp);
@@ -15,6 +23,7 @@ export const InputTable = ({ label }: { label: string }) => {
     function handleSetCursos() {
         if (!cursos.some((curso) => curso.curso === temp?.curso)) {
             setCursos([...cursos, temp]);
+            setValue("cursos", cursos);
             dispatch(setCurso(""));
         }
     }
