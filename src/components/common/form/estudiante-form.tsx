@@ -1,4 +1,3 @@
-import { Form } from "@base-ui-components/react";
 import { Button } from "@/components/ui/button/button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/input/textarea";
@@ -83,7 +82,7 @@ export const EstudianteForm = ({ estudiante }: EstudianteFormProps) => {
     }
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex gap-12 px-4 py-8 border-b border-neutral-300 max-h-[224px]">
                 <div className="flex items-center justify-between">
                     <FilePicker id="imagen" />
@@ -196,7 +195,11 @@ export const EstudianteForm = ({ estudiante }: EstudianteFormProps) => {
                         </div>
                         <Input {...register("docente")} placeholder="Bart" />
                     </div>
-                    <InputTable setValue={setValue} label="cursos" />
+                    <InputTable
+                        setValue={setValue}
+                        label="cursos"
+                        defaultValue={estudiante ? estudiante.cursos : []}
+                    />
                     <div className="flex flex-col gap-2">
                         <div>
                             <label htmlFor="observaciones" className="font-bold">
@@ -224,6 +227,6 @@ export const EstudianteForm = ({ estudiante }: EstudianteFormProps) => {
                     </Button>
                 </div>
             </div>
-        </Form>
+        </form>
     );
 };

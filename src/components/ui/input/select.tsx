@@ -28,7 +28,10 @@ const Select = forwardRef<HTMLDivElement, SelectRootProps>(
                 <SelectTrigger
                     placeholder={placeholder}
                     value={value}
-                    onClick={() => dispatch(toggle())}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(toggle());
+                    }}
                     name={name}
                 />
                 <SelectPopup>{children}</SelectPopup>
