@@ -1,13 +1,13 @@
-import { Input } from "@/components/ui/input/input";
+import { Textarea } from "@/components/ui/input/textarea";
 import { FieldError, useFormContext } from "react-hook-form";
 
-interface InputFieldProps {
+interface TextareaFieldProps {
     label: string;
     placeholder?: string;
     error: FieldError | undefined;
 }
 
-export const InputField = ({ label, placeholder, error }: InputFieldProps) => {
+export const TextareaField = ({ label, placeholder, error }: TextareaFieldProps) => {
     const { register } = useFormContext();
 
     return (
@@ -18,7 +18,7 @@ export const InputField = ({ label, placeholder, error }: InputFieldProps) => {
                 </label>
                 {error && <p className="text-xs text-red-600">{error.message}</p>}
             </div>
-            <Input {...register(`${label}`)} placeholder={placeholder} />
+            <Textarea {...register(`${label}`)} placeholder={placeholder} rows={3} />
         </div>
     );
 };
