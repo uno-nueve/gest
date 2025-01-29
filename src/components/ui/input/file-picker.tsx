@@ -6,7 +6,6 @@ export interface FilePickerProps extends LabelHTMLAttributes<HTMLLabelElement> {
 
 export const FilePicker = ({ id }: FilePickerProps) => {
     const imagen = useAppSelector((state) => state.file.imagen);
-    console.log(imagen);
 
     return (
         <label

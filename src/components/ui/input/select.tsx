@@ -1,18 +1,17 @@
 import { cn } from "@/utils/cn";
-import { ButtonHTMLAttributes, forwardRef, HTMLAttributes } from "react";
+import { forwardRef, HTMLAttributes } from "react";
 import { ChevronUpDown } from "../svg/chevrons-up-down";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
 import { toggle } from "@/state/select/select-slice";
 import { setCurso } from "@/state/temp/temp-slice";
+import { Input, InputProps } from "./input";
+import { useFormContext } from "react-hook-form";
 
 interface SelectRootProps extends HTMLAttributes<HTMLDivElement> {
     placeholder: string;
     name: string;
 }
-interface SelectTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    value: string;
-    placeholder: string;
-}
+interface SelectTriggerProps extends InputProps {}
 interface SelectPopupProps extends HTMLAttributes<HTMLUListElement> {}
 interface SelectItemProps extends HTMLAttributes<HTMLLIElement> {
     value: string;
@@ -25,38 +24,37 @@ const Select = forwardRef<HTMLDivElement, SelectRootProps>(
 
         return (
             <div ref={ref} className={cn("relative w-full max-w-[260px]", className)} {...props}>
-                <SelectTrigger
-                    placeholder={placeholder}
-                    value={value}
-                    onClick={(e) => {
-                        e.preventDefault();
+                <div
+                    className="relative cursor-pointer max-h-8"
+                    onClick={() => {
                         dispatch(toggle());
                     }}
-                    name={name}
-                />
+                >
+                    <div className="absolute z-10 right-4 top-1 text-neutral-400">
+                        <ChevronUpDown />
+                    </div>
+                    <SelectTrigger placeholder={placeholder} value={value} readOnly name={name} />
+                </div>
                 <SelectPopup>{children}</SelectPopup>
             </div>
         );
     }
 );
 
-const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
-    ({ className, value, placeholder, ...props }, ref) => {
-        return (
-            <button
-                ref={ref}
-                {...props}
-                className={cn(
-                    "flex items-center justify-between py-2 px-4 w-full h-8 bg-white text-neutral-400 rounded-lg relative",
-                    className
-                )}
-            >
-                {value ? <span className="text-black">{value}</span> : placeholder}
-                <ChevronUpDown />
-            </button>
-        );
-    }
-);
+const SelectTrigger = ({ className, value }: SelectTriggerProps) => {
+    const { register } = useFormContext();
+
+    return (
+        <Input
+            {...register("nota")}
+            className={cn(
+                "flex items-center justify-between py-2 px-4 w-full h-8 cursor-pointer bg-white text-black rounded-lg relative",
+                className
+            )}
+            value={value}
+        />
+    );
+};
 
 const SelectPopup = ({ children, className, ...props }: SelectPopupProps) => {
     const isOpen = useAppSelector((state) => state.select.isOpen);
@@ -83,6 +81,7 @@ const SelectPopup = ({ children, className, ...props }: SelectPopupProps) => {
 const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
     ({ className, value, ...props }, ref) => {
         const dispatch = useAppDispatch();
+
         function handleSelection(curso: string) {
             dispatch(setCurso(curso));
             setTimeout(() => dispatch(toggle()), 100);
