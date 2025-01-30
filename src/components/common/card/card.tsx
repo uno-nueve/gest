@@ -1,6 +1,6 @@
-import { TEstudiante } from "@/utils/mock-data";
 import { Link } from "react-router";
 import { Avatar } from "../profile/profile";
+import { TEstudiante } from "@/types/estudiante";
 
 export const Card = ({ estudiante }: { estudiante: TEstudiante }) => {
     const { _id, nombre, apellido, imagen } = estudiante;

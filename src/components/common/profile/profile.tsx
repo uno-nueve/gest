@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button/button";
-import { TEstudiante, TImagen } from "@/utils/mock-data";
 import { Link } from "react-router";
 import { Field } from "../field/field";
 import { Table } from "../table/table";
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/cn";
+import { TImagen } from "@/types/imagen";
+import { TEstudiante } from "@/types/estudiante";
 
 type TAvatar = {
     imagen: TImagen | undefined;
@@ -68,7 +69,7 @@ export const Profile = ({ data }: { data: TEstudiante }) => {
                 </aside>
                 <div className="flex flex-col w-full gap-4 px-4 py-8">
                     <h2 className="text-xl font-bold">Información académica</h2>
-                    <Field label="Año" value={`${data.año} "${data.division}"`} />
+                    <Field label="Grado" value={data.grado} />
                     <Field label="Docente" value={data.docente} />
                     <Table label="Cursos" cursos={data.cursos} />
                     <Field label="Observaciones" value={data.observaciones} variant="display" />
