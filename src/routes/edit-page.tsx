@@ -1,4 +1,8 @@
 import { EstudianteForm } from "@/components/common/form/estudiante-form";
-import { mockdata } from "@/utils/mock-data";
+import { useShowEstudiante } from "@/hooks/use-show-estudiante";
 
-export const EditPage = () => <EstudianteForm estudiante={mockdata[0]} />;
+export const EditPage = () => {
+    const estudiante = useShowEstudiante();
+
+    return <EstudianteForm estudiante={estudiante} />;
+};

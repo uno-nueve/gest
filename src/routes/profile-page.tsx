@@ -1,8 +1,8 @@
 import { Profile } from "@/components/common/profile/profile";
-import { mockdata } from "@/utils/mock-data";
-
-const data = mockdata[0];
+import { useShowEstudiante } from "@/hooks/use-show-estudiante";
 
 export const ProfilePage = () => {
-    return <Profile data={data} />;
+    const estudiante = useShowEstudiante();
+
+    return <Profile data={estudiante} />;
 };
