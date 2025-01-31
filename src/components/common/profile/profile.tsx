@@ -4,8 +4,12 @@ import { Field } from "../field/field";
 import { Table } from "../table/table";
 import { TEstudiante } from "@/types/estudiante";
 import { Avatar } from "@/components/ui/avatar/avatar";
+import { useAppDispatch } from "@/hooks/rtk";
+import { showModal } from "@/state/modal/modal-slice";
 
 export const Profile = ({ data }: { data: TEstudiante }) => {
+    const dispatch = useAppDispatch();
+
     return (
         <main>
             <div className="flex gap-12 px-4 py-8 border-b border-neutral-300 max-h-[224px]">
@@ -14,9 +18,14 @@ export const Profile = ({ data }: { data: TEstudiante }) => {
                     <h1 className="text-[2.5rem] font-bold">
                         {data.nombre} {data.apellido}
                     </h1>
-                    <Link to="editar">
-                        <Button>Editar estudiante</Button>
-                    </Link>
+                    <div className="flex gap-2">
+                        <Link to="editar" className="w-max">
+                            <Button>Editar estudiante</Button>
+                        </Link>
+                        <Button variant="destructive" onClick={() => dispatch(showModal(true))}>
+                            Eliminar
+                        </Button>
+                    </div>
                 </div>
             </div>
             <div className="flex min-h-[calc(100vh-384px)]">

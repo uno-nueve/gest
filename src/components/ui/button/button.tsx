@@ -10,6 +10,7 @@ const buttonVariants = cva(
                 primary: "bg-neutral-800 text-white hover:bg-neutral-700",
                 secondary: "bg-neutral-50 text-black hover:bg-neutral-100",
                 disabled: "bg-neutral-400 text-neutral-100",
+                destructive: "bg-red-600 text-white hover:bg-red-500",
             },
             size: {
                 sm: "py-2 px-4 text-sm",
@@ -25,7 +26,7 @@ const buttonVariants = cva(
 );
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-    variant?: "primary" | "secondary" | "disabled";
+    variant?: "primary" | "secondary" | "disabled" | "destructive";
     size?: "sm" | "md" | "lg";
     className?: string;
     children?: ReactNode;
