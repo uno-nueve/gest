@@ -46,12 +46,13 @@ const SelectTrigger = ({ className, value }: SelectTriggerProps) => {
 
     return (
         <Input
-            {...register("nota")}
+            {...register("curso")}
             className={cn(
                 "flex items-center justify-between py-2 px-4 w-full h-8 cursor-pointer bg-white text-black rounded-lg relative",
                 className
             )}
             value={value}
+            onClick={(e) => e.preventDefault()}
         />
     );
 };

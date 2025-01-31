@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button/button";
-import { Check } from "@/components/ui/svg/check";
-import { TCurso } from "@/utils/mock-data";
 import { FormEvent, useEffect } from "react";
-import { TCel, THead, TRow } from "./table";
+import { TCel, TFoot, THead, TRow } from "./table";
 import { Select, SelectItem } from "@/components/ui/input/select";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
 import { setNota } from "@/state/temp/temp-slice";
 import { useFormContext, useWatch } from "react-hook-form";
 import { Input } from "@/components/ui/input/input";
+import { TCurso } from "@/types/curso";
 
 export const InputTable = ({ label, defaultValue }: { label: string; defaultValue?: TCurso[] }) => {
     const dispatch = useAppDispatch();
@@ -23,7 +22,7 @@ export const InputTable = ({ label, defaultValue }: { label: string; defaultValu
 
     function handleSetCursos(e: FormEvent) {
         e.preventDefault();
-        if (!cursos.some((curso) => curso.curso === temp?.curso)) {
+        if (!cursos.some((curso) => curso.curso === temp.curso) && temp.curso.length) {
             const updatedCursos = [...cursos, temp];
             setValue("cursos", updatedCursos);
         }
@@ -60,21 +59,23 @@ export const InputTable = ({ label, defaultValue }: { label: string; defaultValu
                     </Select>
                     <div className="flex items-center h-8 gap-2 w-max">
                         <label htmlFor="nota" className="hidden" />
-                        <input
+                        <Input
                             type="number"
                             name="nota"
                             inputMode="numeric"
                             min={1}
                             max={10}
-                            className="w-12 h-full px-2 text-center border rounded-lg "
+                            className="h-full text-center border rounded-lg w-14 "
                             placeholder="10"
                             onChange={(e) => dispatch(setNota(Number(e.currentTarget.value)))}
                         />
-                        <Button size="sm" className="w-8 h-8 p-2" onClick={handleSetCursos}>
-                            <Check />
-                        </Button>
                     </div>
                 </TRow>
+                <TFoot>
+                    <Button size="sm" variant="secondary" onClick={handleSetCursos}>
+                        Añadir curso
+                    </Button>
+                </TFoot>
             </div>
         </div>
     );

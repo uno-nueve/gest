@@ -23,7 +23,7 @@ type FieldProps = {
 export const Field = ({ label, value, className, variant }: FieldProps) => {
     return (
         <div>
-            <h3 className="pb-2 font-bold">{label}</h3>
+            <h3 className="pb-2 font-semibold">{label}</h3>
             <div className={cn(fieldVariants({ variant, className }))}>{value}</div>
         </div>
     );
