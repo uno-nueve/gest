@@ -16,6 +16,7 @@ const buttonVariants = cva(
                 sm: "py-2 px-4 text-sm",
                 md: "py-2 px-4",
                 lg: "py-2 px-4 text-xl",
+                icon: "p-1.5 h-7 w-7",
             },
         },
         defaultVariants: {
@@ -27,7 +28,7 @@ const buttonVariants = cva(
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: "primary" | "secondary" | "disabled" | "destructive";
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "icon";
     className?: string;
     children?: ReactNode;
 };

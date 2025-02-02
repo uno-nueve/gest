@@ -5,10 +5,13 @@ import { SubmitHandler } from "react-hook-form";
 import { useAxios } from "./use-axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useAppDispatch } from "./rtk";
+import { getEstudiante } from "@/state/estudiantes/estudiantes-slice";
 
 export const useSubmitEstudiante = (estudiante?: TEstudiante) => {
     const { POST, PUT, PATCH, error, isLoading, data, status } = useAxios();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<FormFields> = async (data): Promise<void> => {
         const formData = new FormData();
@@ -52,11 +55,11 @@ export const useSubmitEstudiante = (estudiante?: TEstudiante) => {
     };
 
     useEffect(() => {
-        console.log(status);
         if (status === 201) {
             navigate(-1);
         }
         if (status === 200) {
+            dispatch(getEstudiante(data._id));
             navigate(`/app/estudiantes/${estudiante?._id}`, { replace: true });
         }
     }, [status]);

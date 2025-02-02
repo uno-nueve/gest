@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button/button";
-import { FormEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { TCel, TFoot, THead, TRow } from "./table";
 import { Select, SelectItem } from "@/components/ui/input/select";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
@@ -7,26 +7,21 @@ import { setNota } from "@/state/temp/temp-slice";
 import { useFormContext, useWatch } from "react-hook-form";
 import { Input } from "@/components/ui/input/input";
 import { TCurso } from "@/types/curso";
+import { Trash } from "@/components/ui/svg/trash";
+import { useInputTable } from "@/hooks/use-input-table";
 
 export const InputTable = ({ label, defaultValue }: { label: string; defaultValue?: TCurso[] }) => {
     const dispatch = useAppDispatch();
     const temp = useAppSelector((state) => state.temp);
     const { register, setValue, control } = useFormContext();
     const cursos: TCurso[] = useWatch({ control, name: "cursos" }) || [];
+    const { handleSetCursos, handleUpdateNota, handleDeleteCurso } = useInputTable(cursos, temp);
 
     useEffect(() => {
         if (defaultValue?.length) {
             setValue("cursos", defaultValue);
         }
     }, [defaultValue, setValue]);
-
-    function handleSetCursos(e: FormEvent) {
-        e.preventDefault();
-        if (!cursos.some((curso) => curso.curso === temp.curso) && temp.curso.length) {
-            const updatedCursos = [...cursos, temp];
-            setValue("cursos", updatedCursos);
-        }
-    }
 
     return (
         <div>
@@ -39,8 +34,25 @@ export const InputTable = ({ label, defaultValue }: { label: string; defaultValu
                 </THead>
                 {cursos.map(({ curso, nota }) => (
                     <TRow key={curso}>
-                        <TCel value={curso} />
-                        <TCel value={nota} />
+                        <div className="flex items-center gap-2">
+                            <Button
+                                variant="destructive"
+                                size="icon"
+                                onClick={(e) => handleDeleteCurso(e, curso)}
+                            >
+                                <Trash />
+                            </Button>
+                            <TCel value={curso} />
+                        </div>
+                        <Input
+                            type="number"
+                            defaultValue={nota}
+                            inputMode="numeric"
+                            min={1}
+                            max={10}
+                            className="text-center border rounded-lg w-14"
+                            onChange={(e) => handleUpdateNota(curso, Number(e.currentTarget.value))}
+                        />
                     </TRow>
                 ))}
                 <TRow>
@@ -65,6 +77,7 @@ export const InputTable = ({ label, defaultValue }: { label: string; defaultValu
                             inputMode="numeric"
                             min={1}
                             max={10}
+                            value={temp.nota}
                             className="h-full text-center border rounded-lg w-14 "
                             placeholder="10"
                             onChange={(e) => dispatch(setNota(Number(e.currentTarget.value)))}

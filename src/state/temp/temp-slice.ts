@@ -20,8 +20,12 @@ export const tempSlice = createSlice({
         setNota: (state, action: PayloadAction<number>) => {
             return { ...state, nota: action.payload };
         },
+        resetState: (state) => {
+            state.curso = initialState.curso;
+            state.nota = initialState.nota;
+        },
     },
 });
 
-export const { setCurso, setNota } = tempSlice.actions;
+export const { setCurso, setNota, resetState } = tempSlice.actions;
 export default tempSlice.reducer;
