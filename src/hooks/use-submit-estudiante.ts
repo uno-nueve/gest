@@ -3,9 +3,12 @@ import { FormFields } from "@/types/schema";
 import { ESTUDIANTES } from "@/utils/urls";
 import { SubmitHandler } from "react-hook-form";
 import { useAxios } from "./use-axios";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export const useSubmitEstudiante = (estudiante?: TEstudiante) => {
-    const { POST, PUT, PATCH, error, isLoading, data } = useAxios();
+    const { POST, PUT, PATCH, error, isLoading, data, status } = useAxios();
+    const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<FormFields> = async (data): Promise<void> => {
         const formData = new FormData();
@@ -26,11 +29,14 @@ export const useSubmitEstudiante = (estudiante?: TEstudiante) => {
             formData.append("observaciones", data.observaciones);
         }
 
+        if (imagen instanceof File) {
+            formData.append("imagen", imagen);
+            imagenForm.append("imagen", imagen);
+        }
+
         if (estudiante) {
             const uPromises = [PUT(`${ESTUDIANTES}/${estudiante._id}`, uData)];
             if (imagen instanceof File) {
-                formData.append("imagen", imagen);
-                imagenForm.append("imagen", imagen);
                 uPromises.push(
                     PATCH(`${ESTUDIANTES}/${estudiante._id}/avatar`, imagenForm, {
                         headers: { "Content-Type": "multipart/form-data" },
@@ -44,5 +50,16 @@ export const useSubmitEstudiante = (estudiante?: TEstudiante) => {
             });
         }
     };
+
+    useEffect(() => {
+        console.log(status);
+        if (status === 201) {
+            navigate(-1);
+        }
+        if (status === 200) {
+            navigate(`/app/estudiantes/${estudiante?._id}`, { replace: true });
+        }
+    }, [status]);
+
     return { onSubmit, error, isLoading, data };
 };

@@ -1,10 +1,28 @@
 import { Button } from "@/components/ui/button/button";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
+import { useAxios } from "@/hooks/use-axios";
 import { showModal } from "@/state/modal/modal-slice";
+import { ESTUDIANTES } from "@/utils/urls";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
-export const DeleteModal = () => {
+export const DeleteModal = ({ id }: { id: string }) => {
     const visible = useAppSelector((state) => state.modal.visible);
     const dispatch = useAppDispatch();
+    const { DELETE, status } = useAxios();
+    const navigate = useNavigate();
+
+    async function onDelete() {
+        await DELETE(`${ESTUDIANTES}/${id}`);
+        dispatch(showModal(false));
+    }
+
+    useEffect(() => {
+        console.log(status);
+        if (status === 200) {
+            navigate(-1);
+        }
+    }, [status]);
 
     return (
         <dialog
@@ -27,7 +45,7 @@ export const DeleteModal = () => {
                     >
                         Cancelar
                     </Button>
-                    <Button variant="destructive" size="sm">
+                    <Button variant="destructive" size="sm" onClick={onDelete}>
                         Eliminar
                     </Button>
                 </div>

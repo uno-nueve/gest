@@ -1,4 +1,3 @@
-import { DeleteModal } from "@/components/common/modal/delete-modal";
 import { Button } from "@/components/ui/button/button";
 import { Link, Outlet, useLocation } from "react-router";
 
@@ -16,7 +15,6 @@ export const EstudiantesPage = () => {
                 </div>
             )}
             <Outlet />
-            <DeleteModal />
         </div>
     );
 };

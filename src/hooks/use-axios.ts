@@ -6,6 +6,7 @@ export const useAxios = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<unknown>();
     const [data, setData] = useState<any>(null);
+    const [status, setStatus] = useState<any>();
 
     const handleError = (error: unknown, message: string) => {
         if (axios.isAxiosError(error)) {
@@ -31,6 +32,7 @@ export const useAxios = () => {
                 ...config,
             });
             setData(res.data);
+            setStatus(res.status);
             return res.data;
         } catch (error) {
             handleError(error, `❌ Error realizando ${method} en ${url}`);
@@ -67,5 +69,5 @@ export const useAxios = () => {
         return await makeRequest("PATCH", url, data, config);
     };
 
-    return { GET, POST, PUT, DELETE, PATCH, isLoading, error, data };
+    return { GET, POST, PUT, DELETE, PATCH, isLoading, error, data, status };
 };

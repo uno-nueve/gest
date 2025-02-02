@@ -1,3 +1,4 @@
+import { DeleteModal } from "@/components/common/modal/delete-modal";
 import { Profile } from "@/components/common/profile/profile";
 import { useAppDispatch } from "@/hooks/rtk";
 import { useShowEstudiante } from "@/hooks/use-show-estudiante";
@@ -14,5 +15,10 @@ export const ProfilePage = () => {
         return <></>;
     }
 
-    return <Profile data={estudiante} />;
+    return (
+        <>
+            <Profile data={estudiante} />
+            <DeleteModal id={id!} />
+        </>
+    );
 };
