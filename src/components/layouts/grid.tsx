@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ESTUDIANTES } from "@/utils/urls";
 import { useEffect } from "react";
-import { Card } from "../common/card/card";
+import { Card } from "../common/card/estudiante-card";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
 import { indexEstudiantes } from "@/state/estudiantes/estudiantes-slice";
 
