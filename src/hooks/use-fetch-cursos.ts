@@ -6,7 +6,7 @@ export type TCount = { label: string; amount: number };
 
 export const useFetchCursos = () => {
     const [count, setCount] = useState<TCount[]>();
-    const { GET } = useAxios();
+    const { GET, isLoading } = useAxios();
     const cursos = [
         "Matemática",
         "Historia",
@@ -36,5 +36,5 @@ export const useFetchCursos = () => {
         fetchCount();
     }, []);
 
-    return { count };
+    return { count, isLoading };
 };
