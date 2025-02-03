@@ -8,14 +8,16 @@ export const Root = () => {
     const session = useAppSelector((state) => state.session.session);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log("SESSION", session);
 
     useEffect(() => {
         const persistedSession = localStorage.getItem("session");
+        if (!persistedSession) {
+            navigate("/login");
+        }
+
         if (persistedSession && !session) {
             dispatch(setSession(JSON.parse(persistedSession)));
-        } else navigate("/login");
-        if (session && session.email) navigate("/app");
+        }
     }, [session]);
 
     return (

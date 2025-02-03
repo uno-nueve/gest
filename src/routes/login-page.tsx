@@ -1,11 +1,24 @@
 import { ArrowLeft } from "@/components/ui/svg/left-arrow";
-import { useAppDispatch } from "@/hooks/rtk";
+import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
 import { setSession } from "@/state/session/session-slice";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import { Link } from "react-router";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 
 export const LoginPage = () => {
+    const session = useAppSelector((state) => state.session.session);
+    const navigate = useNavigate();
+
+    if (session && session.email) {
+        navigate("/app");
+    }
+    useEffect(() => {
+        if (session && session.email) {
+            navigate("/app");
+        }
+    }, [session]);
+
     return (
         <div className="grid h-screen grid-cols-2 text-neutral-800 bg-neutral-50 bg-image">
             <div className="flex flex-col items-center justify-center bg-neutral-800">
