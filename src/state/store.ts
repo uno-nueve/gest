@@ -5,6 +5,7 @@ import filePickerReducer from "./file-picker/file-picker-slice";
 import estudiantesReducer from "./estudiantes/estudiantes-slice";
 import modalReducer from "./modal/modal-slice";
 import sessionReducer from "./session/session-slice";
+import menuReducer from "./menu/menu-slice";
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         estudiantes: estudiantesReducer,
         modal: modalReducer,
         session: sessionReducer,
+        menu: menuReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

@@ -3,7 +3,7 @@ import type { TNavlink } from "@/components/ui/header/header";
 
 export const Navbar = ({ links }: { links: TNavlink[] }) => {
     return (
-        <nav className="flex justify-between font-medium w-80">
+        <nav className="justify-between hidden font-medium w-80 sm:flex">
             {links.map(({ target, label }) => (
                 <NavLink
                     to={target}

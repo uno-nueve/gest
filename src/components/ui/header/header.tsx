@@ -5,6 +5,7 @@ import { removeSession } from "@/state/session/session-slice";
 import { googleLogout } from "@react-oauth/google";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router";
+import { MenuButton } from "@/components/common/menu/menu";
 
 export type TNavlink = {
     target: string;
@@ -32,7 +33,7 @@ export const Header = () => {
                     GEst.
                 </Link>
                 <Navbar links={navlinks} />
-                <div className="flex items-center gap-2">
+                <div className="items-center hidden gap-2 sm:flex">
                     <img
                         src={session?.picture}
                         alt={session?.name}
@@ -42,6 +43,7 @@ export const Header = () => {
                         Cerrar sesión
                     </Button>
                 </div>
+                <MenuButton />
             </div>
         </header>
     );
