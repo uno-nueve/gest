@@ -17,7 +17,7 @@ export const InfoPage = () => {
             </div>
             <div className="flex flex-col items-center max-w-screen-lg py-4 mx-auto">
                 <p className="mb-8 text-3xl font-semibold">Con GEst podrás...</p>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-[repeat(auto-fit,_minmax(330px,_1fr))] gap-4">
                     {features.map(({ src, alt, description }, index) => (
                         <FeatureCard src={src} alt={alt} description={description} key={index} />
                     ))}

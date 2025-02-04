@@ -23,7 +23,7 @@ export const EstudianteForm = ({ estudiante }: EstudianteFormProps) => {
     return (
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex gap-12 px-4 py-8 border-b border-neutral-300 max-h-[224px]">
+                <div className="grid grid-cols-1 sm:grid-cols-[max-content,_1fr] gap-2 sm:gap-12 px-4  py-8 border-b border-neutral-300 min-h-[224px]">
                     <FileField label="imagen" error={errors.imagen} />
                     <div className="flex flex-col gap-4">
                         <InputField label="nombre" error={errors.nombre} placeholder="Bart" />
@@ -34,8 +34,8 @@ export const EstudianteForm = ({ estudiante }: EstudianteFormProps) => {
                         />
                     </div>
                 </div>
-                <div className="flex min-h-[calc(100vh-384px)]">
-                    <aside className="flex flex-col gap-4 px-4 py-8 border-r w-[280px] border-neutral-300">
+                <div className="grid grid-cols-1 md:grid-cols-[260px,_1fr] min-h-[calc(100vh-384px)]">
+                    <aside className="flex flex-col w-full gap-4 px-4 py-8 border-b sm:border-r border-neutral-300">
                         <h2 className="text-xl font-bold text-nowrap">Información personal</h2>
                         <InputField
                             label="email"

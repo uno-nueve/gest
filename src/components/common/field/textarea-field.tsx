@@ -18,7 +18,7 @@ export const TextareaField = ({ label, placeholder, error }: TextareaFieldProps)
                 </label>
                 {error && <p className="text-xs text-red-600">{error.message}</p>}
             </div>
-            <Textarea {...register(`${label}`)} placeholder={placeholder} rows={3} />
+            <Textarea {...register(`${label}`)} placeholder={placeholder} rows={4} />
         </div>
     );
 };

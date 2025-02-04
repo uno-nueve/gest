@@ -27,7 +27,7 @@ export const Grid = () => {
                     <TwoSeventyRing width={80} height={80} />
                 </div>
             ) : (
-                <div className="grid grid-cols-5 gap-4 pb-4">
+                <div className="grid gap-4 pb-4 grid-cols-1 min-[450px]:grid-cols-none min-[450px]:auto-cols-[minmax(0,_236px)]">
                     {data?.map((estudiante) => (
                         <Card estudiante={estudiante} key={estudiante._id} />
                     ))}

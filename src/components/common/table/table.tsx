@@ -10,7 +10,7 @@ export const THead = ({ children }: { children: ReactNode }) => {
 };
 
 export const TRow = ({ children }: { children: ReactNode }) => {
-    return <div className="flex items-center justify-between px-4">{children}</div>;
+    return <div className="flex items-center justify-between gap-2 px-4">{children}</div>;
 };
 
 export const TCel = ({ value }: { value: string | number }) => {

@@ -28,11 +28,11 @@ export const DeleteModal = ({ id }: { id: string }) => {
         <dialog
             className={
                 visible
-                    ? "absolute flex items-center justify-center bottom-0 top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)]"
+                    ? "fixed flex items-center justify-center top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)]"
                     : "hidden"
             }
         >
-            <div className="w-full overflow-hidden bg-white rounded-2xl h-max max-w-96">
+            <div className="w-full overflow-hidden bg-white rounded-2xl h-max max-w-[340px]">
                 <div className="p-4 font-semibold bg-neutral-200">¿Eliminar estudiante?</div>
                 <div className="p-4 text-sm border-b text-neutral-400 border-neutral-200">
                     Esta acción no se puede revertir

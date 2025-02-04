@@ -24,7 +24,7 @@ export const FileField = ({ label, error }: FileFieldProps) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-between">
+        <div className="flex flex-col items-center justify-between w-max">
             <FilePicker id={label} />
             {error && <p className="text-xs text-red-600">{error.message}</p>}
             <Input

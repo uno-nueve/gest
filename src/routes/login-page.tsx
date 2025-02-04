@@ -20,9 +20,9 @@ export const LoginPage = () => {
     }, [session]);
 
     return (
-        <div className="grid h-screen grid-cols-2 text-neutral-800 bg-neutral-50 bg-image">
+        <div className="grid h-screen grid-cols-1 md:grid-cols-2 text-neutral-800 bg-neutral-50 bg-image">
             <div className="flex flex-col items-center justify-center bg-neutral-800">
-                <h1 className="font-rokkitt text-[10rem] leading-none font-bold text-white">
+                <h1 className="font-rokkitt text-9xl sm:text-[10rem] leading-none font-bold text-white">
                     GEst.
                 </h1>
                 <LoginButton />
@@ -30,7 +30,7 @@ export const LoginPage = () => {
                     <ArrowLeft /> Inicio
                 </Link>
             </div>
-            <div />
+            <div className="hidden md:block" />
         </div>
     );
 };

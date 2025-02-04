@@ -9,7 +9,7 @@ const initialState: SelectState = {
 };
 
 export const modalSlice = createSlice({
-    name: "file",
+    name: "modal",
     initialState,
     reducers: {
         showModal: (state, action: PayloadAction<boolean>) => {

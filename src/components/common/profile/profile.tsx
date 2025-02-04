@@ -12,10 +12,10 @@ export const Profile = ({ data }: { data: TEstudiante }) => {
 
     return (
         <main>
-            <div className="flex gap-12 px-4 py-8 border-b border-neutral-300 max-h-[224px]">
+            <div className="grid grid-cols-1 sm:grid-cols-[max-content,_1fr] gap-2 sm:gap-12 px-4 py-8 border-b border-neutral-300 min-h-[224px]">
                 <Avatar imagen={data.imagen} nombre={data.nombre} apellido={data.apellido} />
-                <div className="flex flex-col gap-4">
-                    <h1 className="text-[2.5rem] font-bold">
+                <div className="flex flex-col gap-2 sm:gap-4">
+                    <h1 className="text-2xl sm:text-[2.5rem] font-bold">
                         {data.nombre} {data.apellido}
                     </h1>
                     <div className="flex gap-2">
@@ -28,8 +28,8 @@ export const Profile = ({ data }: { data: TEstudiante }) => {
                     </div>
                 </div>
             </div>
-            <div className="flex min-h-[calc(100vh-384px)]">
-                <aside className="flex flex-col gap-4 px-4 py-8 border-r w-[280px] border-neutral-300">
+            <div className="grid grid-cols-1 md:grid-cols-[260px,_1fr] min-h-[calc(100vh-384px)]">
+                <aside className="flex flex-col w-full gap-4 px-4 py-8 border-b md:border-r border-neutral-300">
                     <h2 className="text-xl font-bold text-nowrap">Información personal</h2>
                     <Field label="Email" value={data.email} />
                     <Field label="Dirección" value={data.direccion} />
