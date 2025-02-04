@@ -69,7 +69,7 @@ export const MenuButton = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <div className="p-4 text-white" onClick={() => dispatch(showMenu(!visible))}>
+        <div className="p-4 text-white sm:hidden" onClick={() => dispatch(showMenu(!visible))}>
             {visible ? "CERRAR" : "MENU"}
         </div>
     );
