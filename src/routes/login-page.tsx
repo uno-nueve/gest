@@ -41,7 +41,10 @@ const LoginButton = () => {
     return (
         <GoogleLogin
             onSuccess={(res) => {
+                //@ts-expect-error jstDecode no ofrece types compatibles.
                 const userInfo = jwtDecode(res.credential);
+
+                //@ts-expect-error userInfo no contiene types de estos datos.
                 const { email, name, exp, picture } = userInfo;
                 dispatch(setSession({ email, name, exp, picture }));
             }}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAxios } from "./use-axios";
 import { ESTUDIANTES } from "@/utils/urls";
+import { TEstudiante } from "@/types/estudiante";
 
 export type TCount = { label: string; amount: number };
 
@@ -24,7 +25,11 @@ export const useFetchCursos = () => {
             try {
                 const studentCount = await Promise.all(
                     cursos.map(async (curso) => {
-                        const estudiantes = await GET(`${ESTUDIANTES}?curso=${curso}`);
+                        const estudiantes = await GET<TEstudiante[]>(
+                            `${ESTUDIANTES}?curso=${curso}`
+                        );
+
+                        //@ts-expect-error GET devuelve T | void.
                         return { label: curso, amount: estudiantes.length };
                     })
                 );

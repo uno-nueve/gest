@@ -15,6 +15,8 @@ export const Grid = () => {
     useEffect(() => {
         async function getData() {
             const res = await GET<TEstudiante[]>(ESTUDIANTES);
+
+            //@ts-expect-error GET devuelve T | void.
             dispatch(indexEstudiantes(res));
         }
         getData();
