@@ -67,7 +67,7 @@ export const InputTable = ({ label, defaultValue }: { label: string; defaultValu
                         <SelectItem value="Lengua" />
                         <SelectItem value="Física" />
                         <SelectItem value="Química" />
-                        <SelectItem value="Ingles" />
+                        <SelectItem value="Inglés" />
                     </Select>
                     <div className="flex items-center h-8 gap-2 w-max">
                         <label htmlFor="nota" className="hidden" />
